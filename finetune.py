@@ -13,9 +13,6 @@ def load_and_format_data(file_path):
         formatted_data.append((item['txt2'], item['dot']))
     return formatted_data
 
-# Charger les données d'entraînement et de validation
-train_data = load_and_format_data('Dataset/train/account_payable_process.json')
-validation_data = load_and_format_data('Dataset/validation/account_payable_process.json')
 
 # Charger les données d'entraînement et de validation pour chaque type de processus
 
