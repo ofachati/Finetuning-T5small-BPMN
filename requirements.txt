@@ -1,0 +1,5 @@
+torch>=1.8.0
+transformers>=4.0.0
+datasets
+sentencepiece
+accelerate>=0.21.0
