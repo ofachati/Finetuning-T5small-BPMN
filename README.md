@@ -1,12 +1,12 @@
 # Fine-tuning t5-small pour BPMN
 
-Ce dépôt contient un script Python ainsi que les jeux de données nécessaires pour le fine-tuning du modèle T5, dans le but de générer des graphes en notation BPMN à partir de descriptions de processus. Le projet utilise PyTorch et la bibliothèque Transformers de Hugging Face.
+Ce dépôt contient un script Python ainsi que les jeux de données nécessaires pour le fine-tuning du modèle T5-small, dans le but de générer des graphes en notation BPMN à partir de descriptions de processus. Le projet utilise PyTorch et la bibliothèque Transformers de Hugging Face.
 
 ## Prérequis
 - Python 3.9
 - Pip (gestionnaire de paquets pour Python)
 
-## Installation
+## Installation et Exécution du script
 
 Commencez par cloner ce dépôt :
 
@@ -14,21 +14,16 @@ Commencez par cloner ce dépôt :
 git clone https://github.com/ofachati/Finetuning-T5small-BPMN
 ```
 
-installez les dépendances requises en exécutant :
+installez les dépendances requises :
 
 ```bash
 pip install -r requirements.txt
 ```
 #### Ces dépendances fonctionnent pour Windows, mais n'ont pas été testées pour d'autres systèmes d'exploitation.
-## Exécution du script
-
 Pour lancer le script de fine-tuning.
 ```bash
 python finetune.py
 ```
-
-Assurez-vous que les chemins vers les fichiers de données dans le script sont corrects et pointent vers les fichiers JSON appropriés dans le dossier `Dataset`.
-
 
 ## Détails du Code
 
