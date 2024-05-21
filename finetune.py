@@ -2,84 +2,43 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration, Trainer, Train
 from torch.utils.data import Dataset
 import json
 
-# Fonction pour charger les données
+# charger et formater les données
 def load_and_format_data(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
     formatted_data = []
     for item in data:
-        # Ajouter txt1 et txt2 avec la même représentation dot
         formatted_data.append((item['txt1'], item['dot']))
         formatted_data.append((item['txt2'], item['dot']))
     return formatted_data
 
-
 # Charger les données d'entraînement et de validation pour chaque type de processus
 
-# Account Payable Process
-train_data = load_and_format_data('Dataset/train/account_payable_process.json')
-validation_data = load_and_format_data('Dataset/validation/account_payable_process.json')
+# Processus de Gestion de Projets et Processus
+train_data = load_and_format_data('Dataset/train/gestion_projets_et_processus.json')
+validation_data = load_and_format_data('Dataset/validation/gestion_projets_et_processus.json')
 
-# Accounts Receivable Process
-# train_data = load_and_format_data('Dataset/train/accounts_receivable_process.json')
-# validation_data = load_and_format_data('Dataset/validation/accounts_receivable_process.json')
+# Processus de Gestion Financière
+# train_data = load_and_format_data('Dataset/train/gestion_financiere.json')
+# validation_data = load_and_format_data('Dataset/validation/gestion_financiere.json')
 
-# Budget Preparation Process
-# train_data = load_and_format_data('Dataset/train/budget_preparation_process.json')
-# validation_data = load_and_format_data('Dataset/validation/budget_preparation_process.json')
+# Processus de Gestion Clientèle et Marketing
+# train_data = load_and_format_data('Dataset/train/gestion_clientele_et_marketing.json')
+# validation_data = load_and_format_data('Dataset/validation/gestion_clientele_et_marketing.json')
 
-# Churn Rate Prevention Process
-# train_data = load_and_format_data('Dataset/train/churn_rate_prevention_process.json')
-# validation_data = load_and_format_data('Dataset/validation/churn_rate_prevention_process.json')
+# Processus de Gestion de Projets et Processus
+# train_data = load_and_format_data('Dataset/train/gestion_projets_et_processus.json')
+# validation_data = load_and_format_data('Dataset/validation/gestion_projets_et_processus.json')
 
-# Client Onboarding Process for a Marketing Agency
-# train_data = load_and_format_data('Dataset/train/client_onboarding_process_for_a_marketing_agency.json')
-# validation_data = load_and_format_data('Dataset/validation/client_onboarding_process_for_a_marketing_agency.json')
+# Processus de Gestion des Ressources Humaines
+# train_data = load_and_format_data('Dataset/train/gestion_ressources_humaines.json')
+# validation_data = load_and_format_data('Dataset/validation/gestion_ressources_humaines.json')
 
-# Content Promotion Process
-# train_data = load_and_format_data('Dataset/train/content_promotion_process.json')
-# validation_data = load_and_format_data('Dataset/validation/content_promotion_process.json')
+# Processus de Gestion de Startups et Innovation
+# train_data = load_and_format_data('Dataset/train/gestion_startups_innovation.json')
+# validation_data = load_and_format_data('Dataset/validation/gestion_startups_innovation.json')
 
-# Customer Support Process for the Ticket Management
-# train_data = load_and_format_data('Dataset/train/customer_support_process_for_the_ticket_management.json')
-# validation_data = load_and_format_data('Dataset/validation/customer_support_process_for_the_ticket_management.json')
-
-# Employee Onboarding Process
-# train_data = load_and_format_data('Dataset/train/employee_onboarding_process.json')
-# validation_data = load_and_format_data('Dataset/validation/employee_onboarding_process.json')
-
-# Final Grades Submission Process
-# train_data = load_and_format_data('Dataset/train/final_grades_submission_process.json')
-# validation_data = load_and_format_data('Dataset/validation/final_grades_submission_process.json')
-
-# Loan Application Process
-# train_data = load_and_format_data('Dataset/train/loan_application_process.json')
-# validation_data = load_and_format_data('Dataset/validation/loan_application_process.json')
-
-# Order Fulfillment Process
-# train_data = load_and_format_data('Dataset/train/order_fulfillment_process.json')
-# validation_data = load_and_format_data('Dataset/validation/order_fulfillment_process.json')
-
-# Process for Optimizing a Process
-# train_data = load_and_format_data('Dataset/train/process_for_optimizing_a_process.json')
-# validation_data = load_and_format_data('Dataset/validation/process_for_optimizing_a_process.json')
-
-# Project Management Process
-# train_data = load_and_format_data('Dataset/train/project_management_process.json')
-# validation_data = load_and_format_data('Dataset/validation/project_management_process.json')
-
-# Purchase Order Workflow
-# train_data = load_and_format_data('Dataset/train/purchase_order_workflow.json')
-# validation_data = load_and_format_data('Dataset/validation/purchase_order_workflow.json')
-
-# Startup Due Diligence for a Venture Capitalist
-# train_data = load_and_format_data('Dataset/train/startup_due_diligence_for_a_venture_capitalist.json')
-# validation_data = load_and_format_data('Dataset/validation/startup_due_diligence_for_a_venture_capitalist.json')
-
-
-
-
-# Charger  tokenizer eet modele
+# Charger tokenizer et modèle
 model_name = "t5-small"
 tokenizer = T5Tokenizer.from_pretrained(model_name)
 model = T5ForConditionalGeneration.from_pretrained(model_name)
@@ -134,8 +93,6 @@ trainer = Trainer(
 
 # Entraîner le modèle
 trainer.train()
-# utiliser ceci à la place si vous voulez reprendre l'entraînement à partir d'un checkpoint
-# trainer.train(resume_from_checkpoint="./results/checkpoint-34000")
 
 # Sauvegarder le modèle affiné
 model.save_pretrained('./fine_tuned_model')
