@@ -45,7 +45,7 @@ model = T5ForConditionalGeneration.from_pretrained(model_name)
 
 # Classe Dataset personnalisée
 class CustomDataset(Dataset):
-    def __init__(self, tokenizer, data, max_length=1024):
+    def __init__(self, tokenizer, data, max_length=512):
         self.tokenizer = tokenizer
         self.data = data
         self.max_length = max_length
